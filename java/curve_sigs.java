@@ -1,5 +1,7 @@
 package org.whispersystems.curve25519.java;
 
+import org.whispersystems.curve25519.java.vrf.*;
+
 public class curve_sigs {
 
     public static void curve25519_keygen(byte[] curve25519_pubkey_out,

@@ -129,7 +129,7 @@ public class elligator {
     {
         int[] h = new int[10], u = new int[10];
         int sign_bit;
-        ge_p3 p3 = new ge_p3();
+        ge_p3 p3;
 
         byte[] hash = crypto_hash_sha512.crypto_hash_sha512(in, in_len);
 
@@ -138,7 +138,7 @@ public class elligator {
         fe_frombytes.fe_frombytes(h, hash);
         elligator(u, h);
 
-
-
+        p3 = ge_montx_to_p3.ge_montx_to_p3(u, sign_bit);
+        p = ge_scalarmult_cofactor.ge_scalarmult_cofactor(p3);
     }
 }
