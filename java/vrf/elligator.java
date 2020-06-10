@@ -125,7 +125,7 @@ public class elligator {
 
 
 
-    static void hash_to_point(ge_p3 p, int[] in, long in_len)
+    static void hash_to_point(ge_p3 p, byte[] in, long in_len)
     {
         int[] h = new int[10], u = new int[10];
         int sign_bit;

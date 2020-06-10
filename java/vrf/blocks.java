@@ -17,7 +17,7 @@ public class blocks {
 //    ;
 //    }
 
-    static long load_bigendian(int[] x){
+    static long load_bigendian(byte[] x){
         return (long) (x[7])
               | (((long) (x[6])) << 8)
               | (((long) (x[5])) << 16)
@@ -40,15 +40,15 @@ public class blocks {
 //        x[0] = u;
 //    }
 
-    static int[] store_bigendian(int[] x, long u){
-        x[7] = (char) u; u >>= 8;
-        x[6] = (char) u; u >>= 8;
-        x[5] = (char) u; u >>= 8;
-        x[4] = (char) u; u >>= 8;
-        x[3] = (char) u; u >>= 8;
-        x[2] = (char) u; u >>= 8;
-        x[1] = (char) u; u >>= 8;
-        x[0] = (char) u;
+    static byte[] store_bigendian(byte[] x, long u){
+        x[7] = (byte) u; u >>= 8;
+        x[6] = (byte) u; u >>= 8;
+        x[5] = (byte) u; u >>= 8;
+        x[4] = (byte) u; u >>= 8;
+        x[3] = (byte) u; u >>= 8;
+        x[2] = (byte) u; u >>= 8;
+        x[1] = (byte) u; u >>= 8;
+        x[0] = (byte) u;
         return x;
     }
 
@@ -348,13 +348,13 @@ public class blocks {
 //        return 0;
 //    }
 
-    public static int[] arraySlice(int[] array, int pos){
+    public static byte[] arraySlice(byte[] array, int pos){
 
-        int[] arrayCopy = new int[array.length];
+        byte[] arrayCopy = new byte[array.length-pos];
 
 
         for (int i = pos; i < array.length; i++){
-            arrayCopy[i] = array[i] + 0;
+            arrayCopy[i] = array[i];
         }
 
         return arrayCopy;
@@ -362,7 +362,7 @@ public class blocks {
 
 
 
-    public static int[] crypto_hashblocks_sha512(int[] statebytes, int[] in, long inlen){
+    public static byte[] crypto_hashblocks_sha512(byte[] statebytes, byte[] in, long inlen){
         long[] state = new long[8];
         long a, b, c, d, e, f, g, h, T1 = 0, T2 = 0;
 
@@ -563,14 +563,14 @@ public class blocks {
         }
 
 
-        int[] statebytes1 = store_bigendian(arraySlice(statebytes,  0),state[0]);
-        int[] statebytes2 = store_bigendian(arraySlice(statebytes,  8),state[1]);
-        int[] statebytes3 = store_bigendian(arraySlice(statebytes, 16),state[2]);
-        int[] statebytes4 = store_bigendian(arraySlice(statebytes, 24),state[3]);
-        int[] statebytes5 = store_bigendian(arraySlice(statebytes, 32),state[4]);
-        int[] statebytes6 = store_bigendian(arraySlice(statebytes, 40),state[5]);
-        int[] statebytes7 = store_bigendian(arraySlice(statebytes, 48),state[6]);
-        int[] statebytes8 = store_bigendian(arraySlice(statebytes, 56),state[7]);
+        byte[] statebytes1 = store_bigendian(arraySlice(statebytes,  0),state[0]);
+        byte[] statebytes2 = store_bigendian(arraySlice(statebytes,  8),state[1]);
+        byte[] statebytes3 = store_bigendian(arraySlice(statebytes, 16),state[2]);
+        byte[] statebytes4 = store_bigendian(arraySlice(statebytes, 24),state[3]);
+        byte[] statebytes5 = store_bigendian(arraySlice(statebytes, 32),state[4]);
+        byte[] statebytes6 = store_bigendian(arraySlice(statebytes, 40),state[5]);
+        byte[] statebytes7 = store_bigendian(arraySlice(statebytes, 48),state[6]);
+        byte[] statebytes8 = store_bigendian(arraySlice(statebytes, 56),state[7]);
 
         for (int i=0; i<8; i++){
             statebytes1[i+0 ] = statebytes1[i];

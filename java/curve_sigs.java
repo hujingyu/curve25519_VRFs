@@ -113,19 +113,31 @@ public class curve_sigs {
     }
 
 
-    public static int curve25519_vrf_sign(Sha512 sha512provider, byte[] signature_out,
-                                          byte[] curve25519_privkey,
-                                          byte[] msg, int msg_len,
-                                          byte[] random)
-    {
-        return 0;
-    }
-
-
-    public static int curve25519_vrf_verify(Sha512 sha512provider, byte[] signature,
-                                            byte[] curve25519_pubkey,
-                                            byte[] msg, int msg_len)
-    {
-        return 0;
-    }
+//    public static int curve25519_vrf_sign(Sha512 sha512provider, byte[] signature_out,
+//                                          byte[] curve25519_privkey,
+//                                          byte[] msg, int msg_len,
+//                                          byte[] random)
+//    {
+//        ge_p3 ed_pubkey_point = new ge_p3(); /* Ed25519 pubkey point */
+//        byte[] ed_pubkey = new byte[32]; /* Ed25519 encoded pubkey */
+//        byte[] sigbuf = new byte[msg_len + 128]; /* working buffer */
+//        byte sign_bit = 0;
+//
+//        /* Convert the Curve25519 privkey to an Ed25519 public key */
+//        ge_scalarmult_base.ge_scalarmult_base(ed_pubkey_point, curve25519_privkey);
+//        ge_p3_tobytes.ge_p3_tobytes(ed_pubkey, ed_pubkey_point);
+//        sign_bit = (byte)(ed_pubkey[31] & 0x80);
+//
+//        sign_vrf.sign_vrf(sha512provider,  sigbuf, msg, msg_len, curve25519_privkey,
+//                                    ed_pubkey, random);
+//        return 0;
+//    }
+//
+//
+//    public static int curve25519_vrf_verify(Sha512 sha512provider, byte[] signature,
+//                                            byte[] curve25519_pubkey,
+//                                            byte[] msg, int msg_len)
+//    {
+//        return 0;
+//    }
 }
