@@ -1,4 +1,6 @@
 package org.whispersystems.curve25519;
+
+
 import org.whispersystems.curve25519.java.*;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -12,11 +14,27 @@ class PlaygroundTest {
     @org.junit.jupiter.api.BeforeEach
     void setUp() {
 
-//        provider = new JCESha512Provider();
-//
-//        randomProvider = new JCESecureRandomProvider();
-//
-//        Instance = Curve25519.getInstance("NATIVE");
+        provider = new JCESha512Provider();
+
+        randomProvider = new JCESecureRandomProvider();
+
+        Instance = Curve25519.getInstance(Curve25519.NATIVE);
+
+
+        byte[] random = new byte[32];
+        byte[] signature = new byte[64];
+        Curve25519KeyPair kp = Instance.generateKeyPair();
+        byte[] privKey = kp.getPublicKey();
+        byte[] msg = "Hi".getBytes();
+        long msg_len = msg.length;
+        byte[] customization_label = "wwop".getBytes();
+        long custom_label_len = customization_label.length;
+        for (int i=0; i<32; i++){
+            random[i] = (byte) randomProvider.nextInt(2^31);
+        }
+
+        org.whispersystems.curve25519.java.vrf.curve_veddsa.curve_25519_vrf_sign(signature, privKey, msg, msg_len, random, customization_label, custom_label_len);
+        System.out.println(signature);
 
 
     }
